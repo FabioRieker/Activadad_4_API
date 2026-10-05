@@ -18,6 +18,7 @@
     "target": "es2022",
     "module": "es2020",
     "lib": ["es2022", "dom"],
+    "types": ["vitest/globals"],
     "skipLibCheck": true,
     "useDefineForClassFields": false
   },
