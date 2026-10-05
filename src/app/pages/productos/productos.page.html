@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/inicio"></ion-back-button>
     </ion-buttons>
@@ -10,6 +10,12 @@
 <ion-content class="ion-padding">
   <h1>Listado de productos</h1>
 
+  @if (message) {
+    <ion-card color="success" style="margin-bottom: 16px;">
+      <ion-card-content>{{ message }}</ion-card-content>
+    </ion-card>
+  }
+
   @if (loading) {
     <div class="loading">
       <ion-spinner></ion-spinner>
@@ -18,13 +24,13 @@
   }
 
   @if (error) {
-    <ion-card>
+    <ion-card color="danger">
       <ion-card-header>
         <ion-card-title>Error</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <p>{{ error }}</p>
-        <ion-button (click)="loadProducts()">Reintentar</ion-button>
+        <ion-button (click)="loadProducts()" color="light">Reintentar</ion-button>
       </ion-card-content>
     </ion-card>
   }
@@ -42,9 +48,13 @@
             <th>Producto</th>
             <th>Categoría</th>
             <th>Marca</th>
+            <th>Dimensiones (Ancho x Alto)</th>
             <th>Precio</th>
+            <th>Descuento</th>
             <th>Valoración</th>
             <th>Stock</th>
+            <th>Stock Valorado</th>
+            <th>Acciones REST</th>
           </tr>
         </thead>
         <tbody>
@@ -59,13 +69,40 @@
               </td>
               <td>{{ product.category }}</td>
               <td>{{ product.brand || 'Sin marca' }}</td>
+              <td>
+                @if (product.dimensions) {
+                  {{ product.dimensions.width }} x {{ product.dimensions.height }} cm
+                } @else {
+                  15.0 x 7.5 cm
+                }
+              </td>
               <td>{{ product.price | currency:'EUR' }}</td>
-              <td>{{ product.rating }}</td>
+              <td>{{ product.discountPercentage || 0 }}%</td>
+              <td>⭐ {{ product.rating }}</td>
               <td>{{ product.stock }}</td>
+              <td>
+                <strong>{{ calculateValuedStock(product) | currency:'EUR' }}</strong>
+              </td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn-action btn-put" (click)="onUpdateProduct(product)">
+                    PUT
+                  </button>
+                  <button class="btn-action btn-delete" (click)="onDeleteProduct(product.id)">
+                    DELETE
+                  </button>
+                </div>
+              </td>
             </tr>
           }
         </tbody>
       </table>
+    </div>
+
+    <div style="margin-top: 24px;">
+      <ion-button routerLink="/inicio" fill="outline">
+        Regresar a Inicio
+      </ion-button>
     </div>
   }
 </ion-content>

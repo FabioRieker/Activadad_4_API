@@ -1,3 +1,16 @@
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  h1 {
+    margin: 0;
+  }
+}
+
 .loading {
   text-align: center;
   padding: 40px;
@@ -6,24 +19,29 @@
 .table-container {
   width: 100%;
   overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 table {
   width: 100%;
-  min-width: 900px;
+  min-width: 1100px;
   border-collapse: collapse;
 }
 
 th,
 td {
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
+  padding: 10px 14px;
+  border-bottom: 1px solid #333;
   text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
 th {
   background: var(--ion-color-primary);
   color: white;
+  font-weight: 600;
 }
 
 .product {
@@ -33,7 +51,42 @@ th {
 }
 
 .product img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
+  border-radius: 4px;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-action {
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+  color: white;
+  line-height: 1;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+.btn-put {
+  background-color: #6366f1;
+}
+
+.btn-delete {
+  background-color: #ef4444;
 }
