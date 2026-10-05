@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sobre Nosotros (About)</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card class="about-card">
+    <ion-card-header>
+      <ion-card-title>DAM2 Solutions & Tech</ion-card-title>
+      <ion-card-subtitle>Desarrollo de Interfaces y Aplicaciones Multiplataforma</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p class="company-review">
+        <strong>Reseña de la Empresa:</strong><br>
+        Somos una empresa enfocada en el desarrollo de soluciones web y móviles multiplataforma de vanguardia utilizando Ionic y Angular Standalone. Nos especializamos en la integración de APIs REST escalables, diseño de interfaces intuitivas y arquitecturas modernas de desarrollo de software.
+      </p>
+
+      <div class="github-section">
+        <h3>GitHub & Repositorios</h3>
+        <p>Visita nuestro repositorio y perfil de desarrollador para explorar nuestro código fuente:</p>
+        <ion-button href="https://github.com/FabioRieker" target="_blank" rel="noopener noreferrer" color="dark">
+          Ver Perfil en GitHub (FabioRieker)
+        </ion-button>
+      </div>
+
+      <div class="actions">
+        <ion-button routerLink="/inicio" fill="outline">
+          Volver a Inicio
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

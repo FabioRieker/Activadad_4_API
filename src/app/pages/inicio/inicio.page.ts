@@ -5,7 +5,7 @@ import {
   IonTitle,
   IonContent,
   IonButton
-} from '@ionic/angular/standalone';
+} from '@ionic/angular';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -22,4 +22,4 @@ import { RouterLink } from '@angular/router';
     RouterLink
   ]
 })
-export class InicioPage {}
+export class InicioPage { }
