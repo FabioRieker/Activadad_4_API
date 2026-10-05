@@ -50,17 +50,27 @@ export class ProductosPage implements OnInit {
   error = '';
   message = '';
 
+  // Paginación
+  currentPage = 1;
+  pageSize = 10;
+
+  get totalPages(): number {
+    return Math.ceil(this.total / this.pageSize) || 1;
+  }
+
   ngOnInit(): void {
     this.loadProducts();
   }
 
-  // HTTP GET: Cargar productos
+  // HTTP GET: Cargar productos paginados (limit, skip)
   loadProducts(): void {
     this.loading = true;
     this.error = '';
     this.message = '';
 
-    this.productService.getProducts()
+    const skip = (this.currentPage - 1) * this.pageSize;
+
+    this.productService.getProducts(this.pageSize, skip)
       .subscribe({
         next: (response: ProductsResponse) => {
           this.products = response.products;
@@ -77,13 +87,25 @@ export class ProductosPage implements OnInit {
       });
   }
 
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.loadProducts();
+    }
+  }
+
+  prevPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.loadProducts();
+    }
+  }
+
   // Cálculo del Stock Valorado: unidades * (precio - descuento)
   calculateValuedStock(product: Product): number {
     const discountedPrice = product.price * (1 - (product.discountPercentage || 0) / 100);
     return product.stock * discountedPrice;
   }
-
-
 
   // HTTP PUT: Actualizar un producto
   onUpdateProduct(product: Product): void {

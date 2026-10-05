@@ -10,9 +10,9 @@ export class ProductService {
   private http = inject(HttpClient);
   private apiUrl = 'https://dummyjson.com/products';
 
-  // GET: Obtener todos los productos
-  getProducts(): Observable<ProductsResponse> {
-    return this.http.get<ProductsResponse>(this.apiUrl);
+  // GET: Obtener productos con soporte de paginación (limit, skip)
+  getProducts(limit: number = 10, skip: number = 0): Observable<ProductsResponse> {
+    return this.http.get<ProductsResponse>(`${this.apiUrl}?limit=${limit}&skip=${skip}`);
   }
 
   // GET: Obtener un producto por ID

@@ -36,9 +36,17 @@
   }
 
   @if (!loading && !error) {
-    <p>
-      Productos cargados: <strong>{{ products.length }}</strong>
-    </p>
+    <div class="pagination-bar">
+      <ion-button size="small" fill="outline" [disabled]="currentPage === 1" (click)="prevPage()">
+        &laquo; Anterior
+      </ion-button>
+      <span>
+        Página <strong>{{ currentPage }}</strong> de <strong>{{ totalPages }}</strong> ({{ total }} productos en total)
+      </span>
+      <ion-button size="small" fill="outline" [disabled]="currentPage >= totalPages" (click)="nextPage()">
+        Siguiente &raquo;
+      </ion-button>
+    </div>
 
     <div class="table-container">
       <table>
@@ -97,6 +105,16 @@
           }
         </tbody>
       </table>
+    </div>
+
+    <div class="pagination-bar" style="margin-top: 16px;">
+      <ion-button size="small" fill="outline" [disabled]="currentPage === 1" (click)="prevPage()">
+        &laquo; Anterior
+      </ion-button>
+      <span>Página <strong>{{ currentPage }}</strong> de <strong>{{ totalPages }}</strong></span>
+      <ion-button size="small" fill="outline" [disabled]="currentPage >= totalPages" (click)="nextPage()">
+        Siguiente &raquo;
+      </ion-button>
     </div>
 
     <div style="margin-top: 24px;">
